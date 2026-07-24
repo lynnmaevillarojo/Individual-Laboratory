@@ -1,7 +1,5 @@
--- GlowSync database schema + sample data
 CREATE DATABASE IF NOT EXISTS glowsync CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE glowsync;
-
 -- ---------------------------------------------------------------
 -- users (admin/staff who log in)
 -- ---------------------------------------------------------------
@@ -13,9 +11,6 @@ CREATE TABLE IF NOT EXISTS users (
     role     ENUM('Admin','Staff') NOT NULL DEFAULT 'Admin',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
--- NOTE: no row is inserted here on purpose.
--- Run setup_admin.php after import to create your admin login with a bcrypt hash.
-
 -- ---------------------------------------------------------------
 -- customers
 -- ---------------------------------------------------------------
@@ -151,12 +146,6 @@ INSERT INTO feedback (customer_id, name, rating, comment, created_at) VALUES
 (2, 'Erich Domingo', 4, 'Good products but delivery took a bit longer than expected.', CURDATE() - INTERVAL 2 DAY),
 (3, 'Mary Santiago', 5, 'Loved that they double-checked for fragrance-free options for my sensitive skin.', CURDATE());
 
--- ---------------------------------------------------------------
--- customers_staff_view: what Staff accounts see on the Customers
--- pages. Email and address are left out entirely — Staff never
--- receives those columns from the database, Admin still queries
--- the real `customers` table and sees everything.
--- ---------------------------------------------------------------
 CREATE OR REPLACE VIEW customers_staff_view AS
 SELECT id, name, phone, membership, notes, joined_date
 FROM customers;
