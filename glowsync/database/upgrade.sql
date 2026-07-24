@@ -1,13 +1,4 @@
 -- ============================================================
--- GlowSync upgrade script
--- Run this ONCE against an existing glowsync database to add
--- Inventory Management, User Management, Customer Feedback,
--- and Sales Invoice support.
---
--- If you are installing GlowSync fresh, just import
--- database/glowsync.sql instead — it already includes everything
--- in this file.
--- ============================================================
 USE glowsync;
 
 -- ---------------------------------------------------------------
